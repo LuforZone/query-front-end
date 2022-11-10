@@ -15,7 +15,7 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-###`query test`
+### `query test`
 after run `npm start` input phone number to query info u want.  
 
 press refresh to clean msg and check second time
