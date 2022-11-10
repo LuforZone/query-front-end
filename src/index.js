@@ -15,21 +15,23 @@ class GetInfo extends React.Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit() {
-    if (this.state.value.length == 11 ) {
+    if (this.state.value.length == 11) {
       let targetURL = "http://localhost:7001/request/" + this.state.value
       fetch(targetURL)
         .then(data => { return data.json() })
         .then(datum => {
-          if (datum.active != undefined) {
-            if (datum.active.length >= 1) {
-              console.log(datum.active);
-              const result = JSON.stringify(datum,['name','sex','age'],'');
-              const shoulePost = datum.active.map((str) => <QRCodeSVG key={str} value={str} />);
-              this.setState({ person: result, tickets: datum.active, QRnumber: datum.active.length, shouleGO: shoulePost });
-            }/*  */
+          if (datum.active != []&&datum.name!=undefined) {
+            console.log(datum.active);
+            const result = JSON.stringify(datum, ['name', 'sex', 'age'], '');
+            const shoulePost = datum.active.map((str) => <QRCodeSVG key={str} value={str} />);
+            this.setState({ person: result, tickets: datum.active, QRnumber: datum.active.length, shouleGO: shoulePost });
           }
-          else {
-            this.setState({ person: 'cannot get data connect to this phone number,please check it' })
+         if(datum.name!=undefined && datum.active==[]) {
+            const result = JSON.stringify(datum, ['name', 'sex', 'age'], '');
+            this.setState({person:result})
+          }
+          else{
+            this.setState({person:'plz check your number'})
           }
         }
         );
@@ -70,4 +72,4 @@ class GetInfo extends React.Component {
   }
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<GetInfo/>)
+root.render(<GetInfo />)
