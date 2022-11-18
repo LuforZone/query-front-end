@@ -11,7 +11,7 @@ const targetURL = process.env.TARGET_URL
 class GetInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '', person: 'here is your result', QRnumber: 0, tickets: [1, 2, 3], code: '', shouleGO: Object, targeturl: '' };
+    this.state = { value: '', person: 'here is your result', QRnumber: 0, tickets: [1, 2, 3], code: '', shouleGO: Object, targeturl: 'null' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.refreshPush = this.refreshPush.bind(this);
