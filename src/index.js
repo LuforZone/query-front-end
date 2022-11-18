@@ -4,7 +4,7 @@ import './index.css';
 import { QRCodeSVG } from 'qrcode.react';
 
 
-const targetURL = 'http://localhost:7001/request/'
+const targetURL = 'http://127.0.0.1:7001/request/'
 
 class GetInfo extends React.Component {
   constructor(props) {
