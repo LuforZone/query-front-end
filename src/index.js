@@ -25,7 +25,7 @@ class GetInfo extends React.Component {
       const NewTargetURL = targetURL + this.state.value
       this.setState({ targeturl: NewTargetURL })
       console.log(NewTargetURL)
-      fetch(targetURL)
+      fetch(NewTargetURL)
         .then(data => { return data.json() })
         .then(datum => {
           if (datum.active != [] && datum.name != undefined) {
