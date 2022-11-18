@@ -2,11 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { QRCodeSVG } from 'qrcode.react';
-import dotenv from 'dotenv';
-dotenv.config();
 
 
-const targetURL = process.env.TARGET_URL
+const targetURL = 'http://localhost:7001/request/'
 
 class GetInfo extends React.Component {
   constructor(props) {
@@ -20,11 +18,13 @@ class GetInfo extends React.Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit() {
-    let regex = /^[0-9]$/
-    if (this.state.value.length == 11 && regex.test(this.state.value) == true) {
+    let regex = /^[1-9]\d*$/ 
+    if (this.state.value.length === 11  && regex.test(this.state.value) === true ) {
       // eslint-disable-next-line no-use-before-define
-      let targetURL = targetURL + this.state.value
-      this.setState({ targeturl: targetURL })
+      console.log('format is right')
+      const NewTargetURL = targetURL + this.state.value
+      this.setState({ targeturl: NewTargetURL })
+      console.log(NewTargetURL)
       fetch(targetURL)
         .then(data => { return data.json() })
         .then(datum => {
@@ -75,7 +75,10 @@ class GetInfo extends React.Component {
           {this.state.person}
         </div>
         <div>
+          <h1>
           {this.state.targeturl}
+          </h1>
+
         </div>
         <ul>{this.state.shouleGO}</ul>
       </div>
