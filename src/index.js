@@ -24,6 +24,7 @@ class GetInfo extends React.Component {
     if (this.state.value.length == 11 && regex.test(this.state.value)==true) {
       // eslint-disable-next-line no-use-before-define
       let targetURL = targetURL + this.state.value
+      console.log(targetURL)
       fetch(targetURL)
         .then(data => { return data.json() })
         .then(datum => {
