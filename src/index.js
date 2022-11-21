@@ -4,7 +4,8 @@ import './index.css';
 import { QRCodeSVG } from 'qrcode.react';
 
 
-const targetURL = 'http://127.0.0.1:7001/request/'
+const targetURL = process.env.REACT_APP_TARGET_URL;
+console.log(targetURL);
 
 class GetInfo extends React.Component {
   constructor(props) {
@@ -18,14 +19,20 @@ class GetInfo extends React.Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit() {
-    let regex = /^[1-9]\d*$/ 
-    if (this.state.value.length === 11  && regex.test(this.state.value) === true ) {
+    let regex = /^[1-9]\d*$/
+    if (this.state.value.length === 11 && regex.test(this.state.value) === true) {
       // eslint-disable-next-line no-use-before-define
       console.log('format is right')
       const NewTargetURL = targetURL + this.state.value
       this.setState({ targeturl: NewTargetURL })
       console.log(NewTargetURL)
-      fetch(NewTargetURL)
+      const options = {
+        headers: {
+          Accept: '*/*',
+          origin: 'http://localhost:3000',
+        },
+      }
+      fetch(NewTargetURL, options)
         .then(data => { return data.json() })
         .then(datum => {
           if (datum.active != [] && datum.name != undefined) {
@@ -76,7 +83,7 @@ class GetInfo extends React.Component {
         </div>
         <div>
           <h1>
-          {this.state.targeturl}
+            {this.state.targeturl}
           </h1>
 
         </div>
