@@ -35,9 +35,10 @@ class GetInfo extends React.Component {
       fetch(NewTargetURL, options)
         .then(data => { return data.json() })
         .then(datum => {
-          if (datum.active != [] && datum.name != undefined) {
+          if (datum.active !== [] && datum.name !== undefined) {
             console.log(datum.name);
             const result = JSON.stringify(datum, ['name', 'sex', 'age'], '');
+            console.log(result);
             const shoulePost = datum.active.map((str) => <QRCodeSVG key={str} value={str} />);
             this.setState({ person: result, tickets: datum.active, QRnumber: datum.active.length, shouleGO: shoulePost });
           }
