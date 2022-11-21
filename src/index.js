@@ -36,7 +36,7 @@ class GetInfo extends React.Component {
         .then(data => { return data.json() })
         .then(datum => {
           if (datum.active != [] && datum.name != undefined) {
-            console.log(datum.active);
+            console.log(datum.name);
             const result = JSON.stringify(datum, ['name', 'sex', 'age'], '');
             const shoulePost = datum.active.map((str) => <QRCodeSVG key={str} value={str} />);
             this.setState({ person: result, tickets: datum.active, QRnumber: datum.active.length, shouleGO: shoulePost });
