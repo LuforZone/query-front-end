@@ -44,7 +44,7 @@ class GetInfo extends React.Component {
             //this.setState({ person: "1111", tickets: datum.active, QRnumber: datum.active.length, shouleGO: shoulePost });
             console.log(this.state.person);
           }
-          if (datum.name != undefined && datum.active == []) {
+          else if (datum.name != undefined && datum.active == []) {
             const result = JSON.stringify(datum, ['name', 'sex', 'age'], '');
             this.setState({ person: result })
           }
